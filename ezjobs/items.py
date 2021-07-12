@@ -5,8 +5,9 @@
 
 import scrapy
 
-
-class EzjobsItem(scrapy.Item):
-    # define the fields for your item here like:
-    # name = scrapy.Field()
-    pass
+class Jobs(scrapy.Item):
+    company = scrapy.Field() 
+    title = scrapy.Field() 
+    location = scrapy.Field() 
+    link = scrapy.Field() 
+#    date =scrapy.Field(serializer=str) 
