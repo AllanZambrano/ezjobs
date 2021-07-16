@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 scrapy = "*"
 python-dotenv = "*"
+requests = "*"
+discord-webhook = "*"
+"discord.py" = "*"
 
 [dev-packages]
 
