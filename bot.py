@@ -14,7 +14,7 @@ bot = commands.Bot(command_prefix='!')
 async def daily_jobs(ctx):
     await ctx.send("**Beep-boop bee-boop-boop beep beep beep boop!** \n\nHello, \@everyone :rocket: \nNew jobs found! \n\nBeep-bopp, I'm out.")
     
-    with open(f'{d}.json', 'r') as f:
+    with open('jobs.json', 'r') as f:
         jobs = json.load(f)
         
     for job in jobs:

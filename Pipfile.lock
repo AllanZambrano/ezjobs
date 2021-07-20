@@ -1,7 +1,7 @@
 {
     "_meta": {
         "hash": {
-            "sha256": "14538ed08f49464f8be4d12390259216727fbbedda14575495827b94e9e116e1"
+            "sha256": "47f9734cbdb83756e86a8ed327a59222fcd9a6f9a25193abfe5e787126b43352"
         },
         "pipfile-spec": 6,
         "requires": {
@@ -149,11 +149,11 @@
         },
         "charset-normalizer": {
             "hashes": [
-                "sha256:3c502a35807c9df35697b0f44b1d65008f83071ff29c69677c7c22573bc5a45a",
-                "sha256:951567c2f7433a70ab63f1be67e5ee05d3925d9423306ecb71a3b272757bcc95"
+                "sha256:88fce3fa5b1a84fdcb3f603d889f723d1dd89b26059d0123ca435570e848d5e1",
+                "sha256:c46c3ace2d744cfbdebceaa3c19ae691f53ae621b39fd7570f59d14fb7f2fd12"
             ],
             "markers": "python_version >= '3'",
-            "version": "==2.0.2"
+            "version": "==2.0.3"
         },
         "constantly": {
             "hashes": [
@@ -187,14 +187,6 @@
             ],
             "markers": "python_version >= '2.7' and python_version not in '3.0, 3.1, 3.2, 3.3'",
             "version": "==1.1.0"
-        },
-        "discord-webhook": {
-            "hashes": [
-                "sha256:17e475d8a52fe0bfa26b071925f55087600e9bb96e821b611dc463f4b4998c89",
-                "sha256:f3d660df572caaa9c2621edd7e8634a70d6d8295ce9256c365838312457069a1"
-            ],
-            "index": "pypi",
-            "version": "==0.14.0"
         },
         "discord.py": {
             "hashes": [
