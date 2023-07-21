@@ -91,6 +91,6 @@ ITEM_PIPELINES = {
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
 FEEDS = {
-    'jobs.jsonl': {'format': 'jsonlines','overwrite': True}
+    'jobs.json': {'format': 'json','overwrite': True}
 }
 
