@@ -63,6 +63,7 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
+    'ezjobs.pipelines.CleanNull': 100,
 #    'ezjobs.pipelines.JsonWriterPipeline': 300,
 #    'ezjobs.pipelines.JsonPipeline': 300,
     
