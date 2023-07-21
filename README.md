@@ -1,46 +1,48 @@
-# EzJobs Crawler
+# EzJobs: Job Data Crawler and Discord Bot
 
-## Overview: 
+This GitHub repository consists of two parts: a Crawler and a Discord Bot. The Crawler is a Scrapy-based application designed to extract structured job data from WeWorkRemotely.com and post it to our Discord Bot.
 
-EzJobs consists of 2 parts: 
-1. Crawler
-2. Discord Bot
+## Crawler:
 
-### Crawler:
+The EzJobs Crawler is a powerful web scraping application built using Scrapy. Its primary purpose is to crawl WeWorkRemotely.com and extract valuable job data, including company details, job titles, locations, and job links. The crawled data is then parsed and utilized by our Discord Bot.
 
-EzJobs Crawler is an crawler application created by using Scrapy. The main goal for it is to crawl web sites and extracting structured data, for this specific crawler, we'll crawl data from WeWorkRemotely.com and then parse it through Discord. 
+To run the Crawler and obtain job data in a JSON format, execute the following command in your terminal:
 
-For running the crawler, you can run the following command: 
-> scrapy crawl jobs -O jobs.json
+```terminal
+scrapy crawl jobs
+```
 
-This will create a JSON file with the data that was crawled from WeWorkRemotely and then by using the Bot.py, it will embed the json content and post it to the our Discord Bot. 
+This command will create a `jobs.jsonl` file containing all the data crawled from WeWorkRemotely. Subsequently, this data will be used by the Discord Bot to post the latest job updates.
 
-The data that crawls specific is: 
-1. Company
-2. Title of the job
-3. Location
-4. Link
+You can find the relevant code responsible for the data extraction in the `ezjobs/spiders/cs_spider.py` file under the yield information section.
 
-You can review this on the file `ezjobs/spiders/cs_spider.py/` under the yield information. 
+## Discord Bot:
 
-### Discord Bot
+To interact with the EzJobs Discord Bot, you'll need to create an application on the Discord Developer Portal. You can find the portal at: [https://discord.com/developers/applications](https://discord.com/developers/applications)
 
-You'll need to create an application on the discord developer link: https://discord.com/developers/applications
-For this, you'll use `bot.py`. 
+Once you've created your application, use the `bot.py` script to run the Discord Bot. Simply execute the following command in your terminal:
 
-To run the bot, you'll need to run `bot.py` on the terminal use:
-> python3 bot.py 
+```terminal
+python3 bot.py
+```
 
-### Setup
-In order to setup the crawler and run it, you'll need to install Scrapy. 
-For this, you can follow this [guide](https://docs.scrapy.org/en/latest/intro/install.html)
+The bot will be up and running, processing the job data from the Crawler and posting it to your Discord channel.
 
-Also, we use Discordpy to embed our json data. 
-You can reviw their documentation [here](https://discordpy.readthedocs.io/en/stable/).
+### Setup:
 
-### To do improvement:
-- Link can be improved to access the link and retrieve the specific link from the site. 
-- Clean code on cs_spider.py
+Before running the Crawler and the Discord Bot, make sure you have Scrapy installed. If you don't have Scrapy installed, you can refer to this [guide](https://docs.scrapy.org/en/latest/intro/install.html) for installation instructions.
 
-### Reference: 
-https://builtin.com/software-engineering-perspectives/discord-bot-python
+Additionally, our Discord Bot utilizes Discordpy to embed the job data seamlessly. If you need to learn more about Discordpy and its functionalities, you can review their documentation [here](https://discordpy.readthedocs.io/en/stable/).
+
+### To Do Improvements:
+
+We have identified some areas for improvement in our project:
+
+1. **Enhance Job Links**: Improve the handling of job links to ensure easy access to the original job postings from within Discord.
+2. **Code Refactoring**: Clean up the code in `cs_spider.py` and pipeline to enhance readability and maintainability.
+
+### Reference:
+
+If you'd like to learn more about building Discord bots in Python, you can check out this article: [https://builtin.com/software-engineering-perspectives/discord-bot-python](https://builtin.com/software-engineering-perspectives/discord-bot-python)
+
+We welcome your contributions and suggestions to make EzJobs even better! Feel free to fork this repository and submit pull requests to help us grow and improve the project. Happy job hunting!
