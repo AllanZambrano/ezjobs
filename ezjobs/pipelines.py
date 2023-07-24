@@ -6,7 +6,8 @@ class CleanNull(object):
         adapter = ItemAdapter(item)
         # check if value is null
         if adapter.get('company'):
+            #if ok, returns the item
             return item
         else:
-            # drop item is null
+            #if item is null, it drops it
             raise DropItem("Item is NULL")

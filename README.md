@@ -12,7 +12,7 @@ To run the Crawler and obtain job data in a JSON format, execute the following c
 scrapy crawl jobs
 ```
 
-This command will create a `jobs.jsonl` file containing all the data crawled from WeWorkRemotely. Subsequently, this data will be used by the Discord Bot to post the latest job updates.
+This command will create a `jobs.json` file containing all the data crawled from WeWorkRemotely. Subsequently, this data will be used by the Discord Bot to post the latest job updates.
 
 You can find the relevant code responsible for the data extraction in the `ezjobs/spiders/cs_spider.py` file under the yield information section.
 

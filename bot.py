@@ -27,6 +27,7 @@ async def daily_jobs(ctx):
             embed = discord.Embed(title= job['company'], description= job['title'], color = discord.Colour.random())
             embed.add_field(name="Location", value=job['location'])
             embed.add_field(name="Link", value= f"[Click here]({job['link']})")
+            embed.add_field(name="Date", value= job['date'])
             await ctx.send(embed=embed)
 
 @bot.command(name='test')
