@@ -94,3 +94,5 @@ FEEDS = {
     'jobs.json': {'format': 'json','overwrite': True}
 }
 
+DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
+HTTPERROR_ALLOWED_CODES  =[404]
