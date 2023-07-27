@@ -63,8 +63,8 @@ COOKIES_ENABLED = False
 # Configure item pipelines
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
-    'ezjobs.pipelines.CleanNull': 100,
-#    'ezjobs.pipelines.JsonWriterPipeline': 300,
+    'ezjobs.pipelines.CleanNull': 200,
+#    'ezjobs.pipelines.JsonAppendPipeline': 100,
 #    'ezjobs.pipelines.JsonPipeline': 300,
     
 }
@@ -90,9 +90,9 @@ ITEM_PIPELINES = {
 #HTTPCACHE_IGNORE_HTTP_CODES = []
 #HTTPCACHE_STORAGE = 'scrapy.extensions.httpcache.FilesystemCacheStorage'
 
-FEEDS = {
-    'jobs.json': {'format': 'json','overwrite': True}
-}
+#FEEDS = {
+#    'jobs.json': {'format': 'json','overwrite': True}
+#}
 
 DUPEFILTER_CLASS = 'scrapy.dupefilters.BaseDupeFilter'
 HTTPERROR_ALLOWED_CODES  =[404]

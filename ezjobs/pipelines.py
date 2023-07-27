@@ -1,5 +1,6 @@
 from itemadapter import ItemAdapter
 from scrapy.exceptions import DropItem
+import json
 
 class CleanNull(object):
     def process_item(self, item, spider):
