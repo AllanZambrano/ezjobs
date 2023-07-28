@@ -1,10 +1,8 @@
 import scrapy
 from datetime import date, datetime
 from urllib.parse import urljoin
-from scrapy.crawler import CrawlerProcess
-from scrapy.utils.project import get_project_settings
+from ezjobs.items import JobsItem
 
-d = date.today()
 
 class wwr(scrapy.Spider):
     name = "wwr"
@@ -32,7 +30,7 @@ class wwr(scrapy.Spider):
         for jobs in response.css('article ul li'):
             job_date = jobs.css("a span.date time").xpath('@datetime').get(default='2000-01-01T00:01:01Z')
             job_dt = datetime.strptime(job_date, "%Y-%m-%dT%H:%M:%S%z").date()
-            if d == job_dt: 
+            if date.today() == job_dt: 
                 yield {
                     'company': jobs.css("a span.company::text").get(),
                     'title': jobs.css(".title::text").get(),

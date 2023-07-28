@@ -6,14 +6,14 @@
 import scrapy
 from scrapy.item import Item, Field
 
-class Jobs(Item):
+class JobsItem(Item):
     company = Field() 
     title = Field() 
     location = Field() 
     link = Field() 
     date = Field()
 
-class Remotive(Item):
+class RemotiveItem(Item):
     company = Field() 
     title = Field() 
     link = Field() 

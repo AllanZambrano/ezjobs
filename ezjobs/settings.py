@@ -64,6 +64,8 @@ COOKIES_ENABLED = False
 # See https://docs.scrapy.org/en/latest/topics/item-pipeline.html
 ITEM_PIPELINES = {
     'ezjobs.pipelines.CleanNull': 200,
+#    'ezjobs.pipelines.PostgresPipeline':300,
+    'ezjobs.pipelines.PostgresNoDuplicatesPipeline':300,
 #    'ezjobs.pipelines.JsonAppendPipeline': 100,
 #    'ezjobs.pipelines.JsonPipeline': 300,
     
