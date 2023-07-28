@@ -4,10 +4,18 @@
 # https://docs.scrapy.org/en/latest/topics/items.html
 
 import scrapy
+from scrapy.item import Item, Field
 
-class Jobs(scrapy.Item):
-    company = scrapy.Field() 
-    title = scrapy.Field() 
-    location = scrapy.Field() 
-    link = scrapy.Field() 
-#    date =scrapy.Field(serializer=str) 
+class JobsItem(Item):
+    company = Field() 
+    title = Field() 
+    location = Field() 
+    link = Field() 
+    date = Field()
+
+class RemotiveItem(Item):
+    company = Field() 
+    title = Field() 
+    link = Field() 
+    date = Field()
+
