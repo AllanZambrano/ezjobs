@@ -16,63 +16,14 @@ class CleanNull(object):
             #if item is null, it drops it
             raise DropItem("Item is NULL")
 
-
-class PostgresPipeline:
-
-    def __init__(self):
-        ## Connection Details
-        hostname = os.getenv('hostname')
-        username = os.getenv('username')
-        password = os.getenv('password')
-        database = os.getenv('database')
-        
-
-        ## Create/Connect to database
-        self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
-        
-        ## Create cursor, used to execute commands
-        self.cur = self.connection.cursor()
-        
-        ## Create quotes table if none exists
-        self.cur.execute("""
-        CREATE TABLE IF NOT EXISTS jobs(
-            id serial PRIMARY KEY, 
-            company varchar (150) NOT NULL,
-            title varchar (150) NOT NULL,
-            link text NOT NULL,
-            date text NOT NULL
-        )
-        """)
-
-    def process_item(self, item, spider):
-
-        ## Define insert statement
-        self.cur.execute(""" insert into jobs (company, title, link, date) values (%s,%s,%s,%s)""", (
-            item['company'],
-            item['title'],
-            item['link'],
-            item['date']
-        ))
-
-        ## Execute insert of data into database
-        self.connection.commit()
-        return item
-
-    def close_spider(self, spider):
-
-        ## Close cursor & connection to database 
-        self.cur.close()
-        self.connection.close()
-
-
 class PostgresNoDuplicatesPipeline:
 
     def __init__(self):
         ## Connection Details
-        hostname = os.getenv('hostname')
-        username = os.getenv('username')
-        password = os.getenv('password')
-        database = os.getenv('database')
+        hostname = os.getenv('DB_HOST')
+        username = os.getenv('DB_USERNAME')
+        password = os.getenv('DB_PASSWORD')
+        database = os.getenv('DB_NAME')
 
         ## Create/Connect to database
         self.connection = psycopg2.connect(host=hostname, user=username, password=password, dbname=database)
