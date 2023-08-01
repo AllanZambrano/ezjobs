@@ -9,13 +9,18 @@ from scrapy.item import Item, Field
 class JobsItem(Item):
     company = Field() 
     title = Field() 
-    location = Field() 
     link = Field() 
+    region = Field()
+    tags = Field()
     date = Field()
+    crawled = Field()
 
 class RemotiveItem(Item):
     company = Field() 
     title = Field() 
     link = Field() 
+    region = Field()
+    tags = Field()
     date = Field()
+    crawled = Field()
 

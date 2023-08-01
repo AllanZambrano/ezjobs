@@ -1,47 +1,44 @@
-# EzJobs: Job Data Crawler and Discord Bot
+# EzJobs: Job Data Crawler
 
-This GitHub repository consists of two parts: a Crawler and a Discord Bot. The Crawler is a Scrapy-based application designed to extract structured job data from WeWorkRemotely.com and post it to our Discord Bot.
+The crawler primary purpose is to crawl jobs from job boards and extract valuable job data, including company details, job titles, locations, and job links. 
 
-## Crawler:
+## Setup:
+Before using the Scrapy Crawler Bot, follow these steps to set up your environment:
 
-The EzJobs Crawler is a powerful web scraping application built using Scrapy. Its primary purpose is to crawl WeWorkRemotely.com and extract valuable job data, including company details, job titles, locations, and job links. The crawled data is then parsed and utilized by our Discord Bot.
-
-To run the Crawler and obtain job data in a JSON format, execute the following command in your terminal:
-
-```terminal
-scrapy crawl jobs
-```
-
-This command will create a `jobs.json` file containing all the data crawled from WeWorkRemotely. Subsequently, this data will be used by the Discord Bot to post the latest job updates.
-
-You can find the relevant code responsible for the data extraction in the `ezjobs/spiders/cs_spider.py` file under the yield information section.
-
-## Discord Bot:
-
-To interact with the EzJobs Discord Bot, you'll need to create an application on the Discord Developer Portal. You can find the portal at: [https://discord.com/developers/applications](https://discord.com/developers/applications)
-
-Once you've created your application, use the `bot.py` script to run the Discord Bot. Simply execute the following command in your terminal:
+1. Install the required packages by running the following commands in your terminal:
 
 ```terminal
-python3 bot.py
+pipenv shell
+pipenv install
+
 ```
 
-The bot will be up and running, processing the job data from the Crawler and posting it to your Discord channel.
+2. Create an .env file with the following requiements: 
 
-### Setup:
+```terminal
+DB_HOST='YOURHOST'
+DB_NAME='YourDB'
+DB_USERNAME='YourUsername'
+DB_PASSWORD='YourPassword!'
+```
+
+3. To run the Crawler and obtain job data in a JSON format, execute the following command in your terminal:
+
+```terminal
+scrapy crawl wwr 
+scrapy crawl remotive
+# We use different crawlers for every page
+```
+
+This command will create a `{{wwr/remotive}}.json` file containing all the data crawled from the job boards and also save it on your database.
+
+You can find the relevant code responsible for the data extraction in the `ezjobs/spiders/wwr.py` & `ezjobs/spiders/remotive.py` file under the yield information section.
+
+### Reference:
 
 Before running the Crawler and the Discord Bot, make sure you have Scrapy installed. If you don't have Scrapy installed, you can refer to this [guide](https://docs.scrapy.org/en/latest/intro/install.html) for installation instructions.
 
 Additionally, our Discord Bot utilizes Discordpy to embed the job data seamlessly. If you need to learn more about Discordpy and its functionalities, you can review their documentation [here](https://discordpy.readthedocs.io/en/stable/).
-
-### To Do Improvements:
-
-We have identified some areas for improvement in our project:
-
-1. **Enhance Job Links**: Improve the handling of job links to ensure easy access to the original job postings from within Discord.
-2. **Code Refactoring**: Clean up the code in `cs_spider.py` and pipeline to enhance readability and maintainability.
-
-### Reference:
 
 If you'd like to learn more about building Discord bots in Python, you can check out this article: [https://builtin.com/software-engineering-perspectives/discord-bot-python](https://builtin.com/software-engineering-perspectives/discord-bot-python)
 

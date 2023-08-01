@@ -30,38 +30,44 @@ class PostgresNoDuplicatesPipeline:
         
         ## Create cursor, used to execute commands
         self.cur = self.connection.cursor()
-        
-        ## Create quotes table if none exists
+
+        ## Create jobs table if none exists
         self.cur.execute("""
         CREATE TABLE IF NOT EXISTS jobs(
             id serial PRIMARY KEY, 
             company varchar (150) NOT NULL,
             title varchar (150) NOT NULL,
             link text NOT NULL,
-            date text NOT NULL
+            region text NOT NULL,
+            tags text NOT NULL,
+            date date NOT NULL,
+            crawled text NOT NULL, 
         )
         """)
 
     def process_item(self, item, spider):
 
-        ## Check to see if text is already in database 
+        ## Check to see if link is already in database 
         self.cur.execute("select * from jobs where link = %s", (item['link'],))
         result = self.cur.fetchone()
 
         ## If it is in DB, create log message
         if result:
-            spider.logger.warn("Item already in database: %s" % item['link'])
+            spider.logger.warn("Item already in database: %s" %item['link'])
 
 
         ## If text isn't in the DB, insert data
         else:
 
             ## Define insert statement
-            self.cur.execute(""" insert into jobs (company, title, link, date) values (%s,%s,%s,%s)""", (
+            self.cur.execute(""" insert into jobs (company, title, link, region, tags, date, crawled) values (%s,%s,%s,%s,%s,%s, %s)""", (
                 item['company'],
                 item['title'],
                 item['link'],
-                item['date']
+                item['region'],
+                item['tags'],
+                item['date'],
+                item['crawled'],
         ))
 
             ## Execute insert of data into database

@@ -50,9 +50,11 @@ COOKIES_ENABLED = False
 
 # Enable or disable downloader middlewares
 # See https://docs.scrapy.org/en/latest/topics/downloader-middleware.html
-#DOWNLOADER_MIDDLEWARES = {
+DOWNLOADER_MIDDLEWARES = {
+    'scrapy.downloadermiddlewares.useragent.UserAgentMiddleware': None, # disable default user-agent middleware
+    'scrapy_user_agents.middlewares.RandomUserAgentMiddleware': 400,
 #    'ezjobs.middlewares.EzjobsDownloaderMiddleware': 543,
-#}
+}
 
 # Enable or disable extensions
 # See https://docs.scrapy.org/en/latest/topics/extensions.html

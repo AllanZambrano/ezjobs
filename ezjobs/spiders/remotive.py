@@ -2,9 +2,11 @@ import scrapy
 from urllib.parse import urljoin
 from datetime import date, timedelta 
 
+today = date.today()
+
 class remotive(scrapy.Spider):
     name = "remotive"
-    base = "https://remotive.com/?locations=Worldwide"
+    base = "https://remotive.com/"
     custom_settings = {
         'FEEDS': {
                 'remotive-jobs.json': {'format': 'json','overwrite': True}
@@ -29,16 +31,15 @@ class remotive(scrapy.Spider):
 
     def parse(self, response):
         for list in response.css('div#initial_job_list ul li'):
+            location = list.css("span.job-tile-location::text").extract()[1].strip()
             if list.css('span.tw-text-xs.tw-mr-4::text').get(default='').strip() == 'YDay':
-                yield {
-                    'company': list.css('div.job-tile-title a.remotive-url-visit span::text').extract()[2],
-                    'title': list.css('div.job-tile-title a.remotive-url-visit span::text').extract()[0],
-                    'link': urljoin(self.base, ''.join(list.css('a.job-tile-apply::attr("href")').get())),
-                    'date': date.today() - timedelta(days = 1) 
-                    #
-                }
-            else:
-                pass
-
-# date.today() - timedelta(days = 1)
-# list.css('span.tw-text-xs.tw-mr-4::text').get().strip()
+                if (location != 'USA Only'):
+                    yield {
+                        'company': list.css('div.job-tile-title a.remotive-url-visit span::text').extract()[2],
+                        'title': list.css('div.job-tile-title a.remotive-url-visit span::text').extract()[0],
+                        'link': urljoin(self.base, ''.join(list.css('a.job-tile-apply::attr("href")').get())),
+                        'region': list.css("span.job-tile-location::text").extract()[1].strip(),
+                        'tags': list.css("a.job-tile-category::text").get(),
+                        'date': today - timedelta(days = 1),
+                        'date': 'Remotive'
+                    }

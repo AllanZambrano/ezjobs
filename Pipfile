@@ -7,9 +7,9 @@ name = "pypi"
 scrapy = "*"
 python-dotenv = "*"
 requests = "*"
-"discord.py" = "*"
+scrapy-user-agents = "*"
 
 [dev-packages]
 
 [requires]
-python_version = "3.9"
+python_version = "*"
