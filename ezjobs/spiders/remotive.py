@@ -41,5 +41,5 @@ class remotive(scrapy.Spider):
                         'region': list.css("span.job-tile-location::text").extract()[1].strip(),
                         'tags': list.css("a.job-tile-category::text").get(),
                         'date': today - timedelta(days = 1),
-                        'date': 'Remotive'
+                        'crawled': 'Remotive'
                     }

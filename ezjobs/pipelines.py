@@ -31,22 +31,13 @@ class PostgresNoDuplicatesPipeline:
         ## Create cursor, used to execute commands
         self.cur = self.connection.cursor()
 
-        ## Create jobs table if none exists
-        self.cur.execute("""
-        CREATE TABLE IF NOT EXISTS jobs(
-            id serial PRIMARY KEY, 
-            company varchar (150) NOT NULL,
-            title varchar (150) NOT NULL,
-            link text NOT NULL,
-            region text NOT NULL,
-            tags text NOT NULL,
-            date date NOT NULL,
-            crawled text NOT NULL, 
-        )
-        """)
 
     def process_item(self, item, spider):
 
+        # IF psycopg2.errors.InFailedSqlTransaction: current transaction is aborted, 
+        # commands ignored until end of transaction block
+        # ROLLBACK
+        # self.cur.execute("ROLLBACK")
         ## Check to see if link is already in database 
         self.cur.execute("select * from jobs where link = %s", (item['link'],))
         result = self.cur.fetchone()
@@ -60,7 +51,7 @@ class PostgresNoDuplicatesPipeline:
         else:
 
             ## Define insert statement
-            self.cur.execute(""" insert into jobs (company, title, link, region, tags, date, crawled) values (%s,%s,%s,%s,%s,%s, %s)""", (
+            self.cur.execute(""" insert into jobs (company, title, link, region, tags, date, crawled) values (%s,%s,%s,%s,%s,%s,%s)""", (
                 item['company'],
                 item['title'],
                 item['link'],

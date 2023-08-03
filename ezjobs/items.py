@@ -14,6 +14,7 @@ class JobsItem(Item):
     tags = Field()
     date = Field()
     crawled = Field()
+    imgjob = Field()
 
 class RemotiveItem(Item):
     company = Field() 
@@ -23,4 +24,5 @@ class RemotiveItem(Item):
     tags = Field()
     date = Field()
     crawled = Field()
+    imgjob = Field()
 
